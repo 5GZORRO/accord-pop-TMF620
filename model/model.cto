@@ -1,0 +1,178 @@
+namespace pop.zorro.templates
+
+import org.accordproject.cicero.contract.* from https://models.accordproject.org/cicero/contract.cto
+import org.accordproject.cicero.runtime.* from https://models.accordproject.org/cicero/runtime.cto
+import org.accordproject.money.MonetaryAmount from https://models.accordproject.org/money@0.2.0.cto
+import org.accordproject.time.Duration from https://models.accordproject.org/time@0.2.0.cto
+
+transaction MyRequest extends Request {
+  o String input
+}
+
+transaction MyResponse extends Response {
+  o String output
+}
+
+/**
+ * The model for the contract
+ */
+asset ProductOfferingPrice extends AccordContract {
+  // o String @baseType
+  // o String @schemaLocation
+  // o String @type
+  o String id
+  o String href
+  o String description
+  o Boolean isBundle
+  o DateTime lastUpdate 
+  o String lifeCycleStatus
+  o String name
+  o Double percentage 
+  o String priceType
+  o Integer recurringChargePeriodLength
+  o String recurringChargePeriodType
+  o String version
+  o Money price // MONEY
+  o Quantity unitOfMeasure optional
+  o TimePeriod validFor
+  o ProductOfferingTerm[] productOfferingTerm optional
+  o PlaceRef[] place optional
+  o ConstraintRef[] constraint optional
+  o PricingLogicAlgorithm[] pricingLogicAlgorithm optional
+  o ProductOfferingPriceRelationship[] popRelationship optional
+  o TaxItem[] tax optional
+  o ProductSpecificationCharacteristicValueUse[] prodSpecCharValueUse optional
+}
+
+concept TimePeriod {
+  o DateTime startDateTime
+  o DateTime endDateTime
+}
+
+concept Quantity { // Ex: 1 user
+  o Double amount
+  o String units
+}
+
+concept Money {
+  o String unit
+  o Integer value
+}
+
+concept ConstraintRef {
+  o String id
+  o String href
+  o String name
+  o String version optional
+  // o String @baseType
+  // o String @schemaLocation
+  // o String @type
+  // o String @referredType
+}
+
+concept PlaceRef {
+  o String id
+  o String href
+  o String name
+  // o String @baseType
+  // o String @schemaLocation // Uri
+  // o String @type
+  // o String @referredType
+}
+
+concept ProductOfferingPriceRelationship {
+  o String id
+  o String href
+  o String name
+  o String relationshipType
+  // o String @baseType
+  // o String @schemaLocation // Uri
+  // o String @type
+}
+
+concept BundledProductOfferingPriceRelationship {
+  o String id
+  o String href
+  o String name
+  // o String @baseType
+  // o String @schemaLocation // Uri
+  // o String @type
+}
+
+concept TaxItem {
+  o String taxCategory
+  o Double taxRate
+  o Money taxAmount // MONEY
+  // o String @baseType
+  // o String @schemaLocation // Uri
+  // o String @type
+}
+
+concept PricingLogicAlgorithm {
+  o String id
+  o String href
+  o String description
+  o String name
+  o String plaSecId
+  o TimePeriod validFor
+  // o String @baseType
+  // o String @schemaLocation // Uri
+  // o String @type
+}
+
+concept ProductOfferingTerm {
+  o String description
+  o String name
+  o Quantity duration // QUANTITY
+  o TimePeriod validFor
+  // o String @baseType
+  // o String @schemaLocation // Uri
+  // o String @type
+}
+
+concept ProductSpecificationCharacteristicValueUse {
+  o String description
+  o Integer maxCardinality
+  o Integer minCardinality
+  o String name
+  o String valueType
+  o TimePeriod validFor
+  // o String @baseType
+  // o String @schemaLocation // Uri
+  // o String @type
+  o ProductSpecificationCharacteristicValue[] productSpecCharacteristicValue optional
+  o ProductSpecificationRef productSpecification optional  
+}
+
+concept ProductSpecificationCharacteristicValue {
+  o Boolean isDefault
+  o String rangeInterval
+  o String regex
+  o String unitOfMeasure
+  o String valueFrom
+  o String valueTo
+  o String valueType
+  o TimePeriod validFor
+  o String value // ANY?
+  // o String @baseType
+  // o String @schemaLocation // Uri
+  // o String @type
+}
+
+concept ProductSpecificationRef {
+  o String id
+  o String href
+  o String name
+  o String version
+  // o String @baseType
+  // o String @schemaLocation // Uri
+  // o String @type
+  // o String @referredType
+  o TargetProductSchema targetProductSchema optional
+}
+
+concept TargetProductSchema {
+  // o String @baseType
+  // o String @schemaLocation // String | Uri ?
+  // o String @type
+}

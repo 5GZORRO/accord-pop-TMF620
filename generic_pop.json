@@ -1,0 +1,117 @@
+{
+    "id": "generic_po_specification",
+    "href": "https://mycsp.com:8080/tmf-api/productCatalogManagement/v4/productSpecification/7655",
+    "name": "VNF specification for a generic PO",
+    "description": "",
+    "isBundle": false,
+    "lastUpdate": "2017-04-19T16:42:23.0Z",
+    "lifecycleStatus": "Active",
+    "productSpecCharacteristic": [
+        {
+            "name": "FunctionDescriptorName",
+            "description": "Descriptor name which links this specification to an actual Virtual Network Function",
+            "valueType": "string",
+            "configurable": true,
+            "isUnique": false,
+            "productSpecCharacteristicValue": [
+                {
+                    "isDefault": true,
+                    "valueType": "string",
+                    "value": "Value should be added at the POP level directly when overwriting this value (more than one allowed)"
+                }
+            ]
+        },
+        {
+            "name": "FunctionDescriptorType",
+            "description": "Type of component that correspond to the FunctionDescriptorName values in a POP. This PSC affects to the entire POP, therefore each type of FunctionDescriptorName would require a new POP.",
+            "valueType": "string",
+            "configurable": false,
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "extensible": false,
+            "isUnique": true,
+            "productSpecCharacteristicValue": [
+                {
+                    "isDefault": true,
+                    "valueType": "string",
+                    "value": "SLICE"
+                },
+                {
+                    "isDefault": false,
+                    "valueType": "string",
+                    "value": "NETWORK_SERVICE"
+                },
+                {
+                    "isDefault": false,
+                    "valueType": "string",
+                    "value": "VIRTUAL_NETWORK_FUNCTION"
+                }
+            ]
+        },
+        {
+            "name": "PriceLogic",
+            "description": "Type of logic applied to the productOfferingPrice",
+            "valueType": "string",
+            "configurable": false,
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "extensible": true,
+            "isUnique": true,
+            "productSpecCharacteristicValue": [
+                {
+                    "isDefault": true,
+                    "valueType": "string",
+                    "value": "TIME_OF_USE"
+                },
+                {
+                    "isDefault": false,
+                    "valueType": "string",
+                    "value": "N_OF_USER"
+                },
+                {
+                    "isDefault": false,
+                    "valueType": "string",
+                    "value": "N_OF_INSTANCES"
+                },
+                {
+                    "isDefault": false,
+                    "valueType": "string",
+                    "value": "SIMPLE"
+                }
+            ]
+        },
+        {
+            "name": "UnitOfMeasureAggregation",
+            "description": "Additional logic required to correctly measure the PriceType. They may be combined in order to closely describe the price logic.",
+            "valueType": "string",
+            "configurable": false,
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "extensible": true,
+            "isUnique": false,
+            "productSpecCharacteristicValue": [
+                {
+                    "isDefault": true,
+                    "valueType": "string",
+                    "value": "MAX"
+                },
+                {
+                    "isDefault": false,
+                    "valueType": "string",
+                    "value": "MIN"
+                },
+                {
+                    "isDefault": false,
+                    "valueType": "string",
+                    "value": "CONCURRENT"
+                },
+                {
+                    "isDefault": false,
+                    "valueType": "string",
+                    "value": "MEAN"
+                }
+            ]
+        }
+    ],
+    "@type": "ProductSpecification"
+}
