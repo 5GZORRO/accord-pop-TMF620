@@ -1,0 +1,4 @@
+{
+    "$class": "pop.zorro.templates.MyRequest",
+    "input": "World"
+}

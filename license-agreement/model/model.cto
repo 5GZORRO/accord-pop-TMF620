@@ -62,20 +62,12 @@ concept ConstraintRef {
   o String href
   o String name
   o String version optional
-  // o String @baseType
-  // o String @schemaLocation
-  // o String @type
-  // o String @referredType
 }
 
 concept PlaceRef {
   o String id
   o String href
   o String name
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
-  // o String @referredType
 }
 
 concept ProductOfferingPriceRelationship {
@@ -83,27 +75,18 @@ concept ProductOfferingPriceRelationship {
   o String href
   o String name
   o String relationshipType
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
 }
 
 concept BundledProductOfferingPriceRelationship {
   o String id
   o String href
   o String name
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
 }
 
 concept TaxItem {
   o String taxCategory
   o Double taxRate
-  o Money taxAmount // MONEY
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
+  o Money taxAmount 
 }
 
 concept PricingLogicAlgorithm {
@@ -113,9 +96,6 @@ concept PricingLogicAlgorithm {
   o String name
   o String plaSecId
   o TimePeriod validFor
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
 }
 
 concept ProductOfferingTerm {
@@ -123,9 +103,6 @@ concept ProductOfferingTerm {
   o String name
   o Quantity duration // QUANTITY
   o TimePeriod validFor
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
 }
 
 concept ProductSpecificationCharacteristicValueUse {
@@ -135,9 +112,6 @@ concept ProductSpecificationCharacteristicValueUse {
   o String name
   o String valueType
   o TimePeriod validFor
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
   o ProductSpecificationCharacteristicValue[] productSpecCharacteristicValue optional
   o ProductSpecificationRef productSpecification optional  
 }
@@ -152,9 +126,6 @@ concept ProductSpecificationCharacteristicValue {
   o String valueType
   o TimePeriod validFor
   o String value // ANY?
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
 }
 
 concept ProductSpecificationRef {
@@ -162,15 +133,5 @@ concept ProductSpecificationRef {
   o String href
   o String name
   o String version
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
-  // o String @referredType
   o TargetProductSchema targetProductSchema optional
-}
-
-concept TargetProductSchema {
-  // o String @baseType
-  // o String @schemaLocation // String | Uri ?
-  // o String @type
 }
