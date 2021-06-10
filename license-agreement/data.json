@@ -1,0 +1,33 @@
+{
+    "$class": "pop.zorro.templates.license_agreement.LicenseTerms",
+    "productName": "VNF Name",
+    "providerCompanyName": "Operator A",
+    "providerCountry": "United Kingdom",
+    "providerAddress": "1 Canada Square, London",
+    "consumerCompanyName": "Operator B",
+    "consumerCountry": "Italy",
+    "consumerAddress": "Nozzano Castello, Lucca",
+    "commencementDate": "2020-01-01T01:00:00.000+01:00",
+    "agreementSignatureDate": "2020-01-01T01:00:00.000+01:00",
+    "description": "VNF description",
+    "priceType": "recurring",
+    "recurringChargePeriodLength": 1,
+    "recurringChargePeriodType": "month",
+    "version": "0.0.1",
+    "price": {
+      "$class": "pop.zorro.templates.license_agreement.Money",
+      "unit": "EUR",
+      "value": 50
+    },
+    "unitOfMeasure": {
+      "$class": "pop.zorro.templates.license_agreement.Quantity",
+      "amount": 1,
+      "units": "instance"
+    },
+    "validFor": {
+      "$class": "pop.zorro.templates.license_agreement.TimePeriod",
+      "endDateTime": "2021-01-01T01:00:00.000+01:00"
+    },
+    "contractId": "05b748eb-750a-458b-b4e4-95090ba7bb53",
+    "$identifier": "05b748eb-750a-458b-b4e4-95090ba7bb53"
+  }

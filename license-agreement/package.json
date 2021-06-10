@@ -1,7 +1,7 @@
 {
-    "name": "pop",
+    "name": "license-agreement",
     "version": "0.0.1",
-    "description": "Name of the person to greet: \"Dan\".\nThank you!",
+    "description": "5GZORRO License Agreement",
     "author": "5GZORRO",
     "accordproject": {
         "template": "contract",

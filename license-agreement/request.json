@@ -1,4 +1,4 @@
 {
-    "$class": "pop.zorro.templates.MyRequest",
-    "input": "World"
+    "$class": "pop.zorro.templates.license_agreement.CalculatePriceRequest",
+    "data": "External {data} required to calculate price"
 }
