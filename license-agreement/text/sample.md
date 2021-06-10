@@ -1,4 +1,5 @@
 # 5GZORRO License Agreement
+**Version**: "0.0.1"
 
 For use of "VNF Name"
 

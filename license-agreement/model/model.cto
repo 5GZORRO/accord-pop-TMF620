@@ -34,22 +34,22 @@ asset LicenseTerms extends Contract {
   //o Boolean isBundle
   //o DateTime lastUpdate 
   //o String lifeCycleStatus
-  //o String name
-  //o Double percentage 
+  //o String name optional
+  o Double percentage optional
   o String priceType optional
   o Integer recurringChargePeriodLength optional
   o String recurringChargePeriodType optional
-  //o String version
+  o String version
   o Money price optional
   o Quantity unitOfMeasure optional
   o TimePeriod validFor
- // o ProductOfferingTerm[] productOfferingTerm optional
- // o PlaceRef[] place optional
- // o ConstraintRef[] constraint optional
- // o PricingLogicAlgorithm[] pricingLogicAlgorithm optional
- // o ProductOfferingPriceRelationship[] popRelationship optional
- // o TaxItem[] tax optional
- // o ProductSpecificationCharacteristicValueUse[] prodSpecCharValueUse optional
+  o ProductOfferingTerm[] productOfferingTerm optional
+  o PlaceRef[] place optional
+  o ConstraintRef[] constraint optional
+  o PricingLogicAlgorithm[] pricingLogicAlgorithm optional
+  o ProductOfferingPriceRelationship[] popRelationship optional
+  o TaxItem[] tax optional
+  o ProductSpecificationCharacteristicValueUse[] prodSpecCharValueUse optional
 }
 
 concept TimePeriod {

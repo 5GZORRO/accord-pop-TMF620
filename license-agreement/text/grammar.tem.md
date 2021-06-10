@@ -1,4 +1,5 @@
 # 5GZORRO License Agreement
+**Version**: {{version}}
 
 For use of {{productName}}
 

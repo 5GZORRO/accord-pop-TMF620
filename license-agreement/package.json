@@ -5,13 +5,13 @@
     "author": "5GZORRO",
     "accordproject": {
         "template": "contract",
-        "cicero": "^0.22.1",
+        "cicero": "^0.22.0",
         "runtime": "ergo"
     },
     "devDependencies": {
         "cucumber": "^5.1.0",
         "chai": "4.2.0",
-        "@accordproject/cicero-cli": "^0.22.1"
+        "@accordproject/cicero-cli": "^0.22.0"
     },
     "scripts": {
         "test": "cucumber-js test -r .cucumber.js"
