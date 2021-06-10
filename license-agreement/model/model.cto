@@ -1,9 +1,8 @@
-namespace pop.zorro.templates
+namespace pop.zorro.templates.license_agreement
 
 import org.accordproject.contract.Contract from https://models.accordproject.org/accordproject/contract.cto
 import org.accordproject.cicero.contract.* from https://models.accordproject.org/cicero/contract.cto
 import org.accordproject.cicero.runtime.* from https://models.accordproject.org/cicero/runtime.cto
-import org.accordproject.money.MonetaryAmount from https://models.accordproject.org/money@0.2.0.cto
 import org.accordproject.time.Duration from https://models.accordproject.org/time@0.2.0.cto
 
 transaction MyRequest extends Request {
@@ -17,34 +16,45 @@ transaction MyResponse extends Response {
 /**
  * The model for the contract
  */
-asset ProductOfferingPrice extends Contract {
-  o String id
-  o String href
+asset LicenseTerms extends Contract {
+  o String productName
+  o String providerCompanyName
+  o String providerCountry
+  o String providerAddress
+  o String consumerCompanyName
+  o String consumerCountry
+  o String consumerAddress
+  o DateTime commencementDate
+  o DateTime agreementSignatureDate
+
+  // POP props
+  //o String id
+  //o String href
   o String description
-  o Boolean isBundle
-  o DateTime lastUpdate 
-  o String lifeCycleStatus
-  o String name
-  o Double percentage 
-  o String priceType
-  o Integer recurringChargePeriodLength
-  o String recurringChargePeriodType
-  o String version
-  o Money price // MONEY
+  //o Boolean isBundle
+  //o DateTime lastUpdate 
+  //o String lifeCycleStatus
+  //o String name
+  //o Double percentage 
+  o String priceType optional
+  o Integer recurringChargePeriodLength optional
+  o String recurringChargePeriodType optional
+  //o String version
+  o Money price optional
   o Quantity unitOfMeasure optional
   o TimePeriod validFor
-  o ProductOfferingTerm[] productOfferingTerm optional
-  o PlaceRef[] place optional
-  o ConstraintRef[] constraint optional
-  o PricingLogicAlgorithm[] pricingLogicAlgorithm optional
-  o ProductOfferingPriceRelationship[] popRelationship optional
-  o TaxItem[] tax optional
-  o ProductSpecificationCharacteristicValueUse[] prodSpecCharValueUse optional
+ // o ProductOfferingTerm[] productOfferingTerm optional
+ // o PlaceRef[] place optional
+ // o ConstraintRef[] constraint optional
+ // o PricingLogicAlgorithm[] pricingLogicAlgorithm optional
+ // o ProductOfferingPriceRelationship[] popRelationship optional
+ // o TaxItem[] tax optional
+ // o ProductSpecificationCharacteristicValueUse[] prodSpecCharValueUse optional
 }
 
 concept TimePeriod {
-  o DateTime startDateTime
-  o DateTime endDateTime
+  o DateTime startDateTime optional
+  o DateTime endDateTime optional
 }
 
 concept Quantity { // Ex: 1 user
@@ -133,5 +143,5 @@ concept ProductSpecificationRef {
   o String href
   o String name
   o String version
-  o TargetProductSchema targetProductSchema optional
 }
+
