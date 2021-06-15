@@ -16,7 +16,7 @@ namespace pop.zorro.templates.license_agreement
 
 contract LicenseLogic over LicenseTerms {
   // Simple Clause
-  clause calculatPrice(request : CalculatePriceRequest) : CalculatedPriceResult {
+  clause calculatePrice(request : CalculatePriceRequest) : CalculatedPriceResult {
     return CalculatedPriceResult{ price: 55.00 }
   }
 }
