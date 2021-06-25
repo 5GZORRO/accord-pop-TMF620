@@ -5,12 +5,42 @@ import org.accordproject.cicero.contract.* from https://models.accordproject.org
 import org.accordproject.cicero.runtime.* from https://models.accordproject.org/cicero/runtime.cto
 import org.accordproject.time.Duration from https://models.accordproject.org/time@0.2.0.cto
 
-transaction CalculatePriceRequest extends Request {
-  o String data
+transaction PricingLogicAlgorithmNInstances extends Request {
+  o Double unitOfMeasure
+  o Double instancesQuantity
+  o Price price
+}
+
+transaction PricingLogicAlgorithmNUsers extends Request {
+  o Double unitOfMeasure
+  o Double usersQuantity
+  o Price price
+}
+
+transaction PricingLogicAlgorithmOneTime extends Request {
+  o Double unitOfMeasure
+  o Price price
+}
+
+transaction PricingLogicAlgorithmTimeOfUse extends Request {
+  o Double unitOfMeasure
+  o Double durationQuantity
+  o Price price
 }
 
 transaction CalculatedPriceResult extends Response {
-  o Double price
+  // o Price price
+  o Double amount
+  o String unit
+}
+
+concept Price {
+  o Double amount
+  o String unit
+}
+
+transaction CalculatePriceRequest extends Request {
+  o String data
 }
 
 /**

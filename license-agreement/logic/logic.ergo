@@ -14,9 +14,48 @@
 
 namespace pop.zorro.templates.license_agreement
 
+// Pricing logics: https://github.com/5GZORRO/elicensing-manager-core/tree/master/resources
+
 contract LicenseLogic over LicenseTerms {
-  // Simple Clause
-  clause calculatePrice(request : CalculatePriceRequest) : CalculatedPriceResult {
-    return CalculatedPriceResult{ price: 55.00 }
+  clause calculatePriceNInstances(request : PricingLogicAlgorithmNInstances) : CalculatedPriceResult {
+    // https://github.com/5GZORRO/elicensing-manager-core/blob/master/resources/pla_n_instances.py
+    let price = request.price.amount / request.unitOfMeasure;
+    let discount : Double =
+      if request.instancesQuantity < 10.0
+      then 20.0
+      else if request.instancesQuantity >= 10.0 or request.instancesQuantity < 20.0
+      then 10.0
+      else 0.0
+    ;
+    return CalculatedPriceResult{ 
+        amount: request.instancesQuantity * price * (1.0 - discount / 100.0),
+        unit: request.price.unit 
+      }
   }
+
+  clause calculatePriceNUsers(request : PricingLogicAlgorithmNUsers) : CalculatedPriceResult {
+    // https://github.com/5GZORRO/elicensing-manager-core/blob/master/resources/pla_n_users.py
+    let price = request.price.amount / request.unitOfMeasure;
+    return CalculatedPriceResult{ 
+        amount: request.usersQuantity * price,
+        unit: request.price.unit 
+      }
+    }
+
+  clause calculatePriceOneTime(request : PricingLogicAlgorithmOneTime) : CalculatedPriceResult {
+    // https://github.com/5GZORRO/elicensing-manager-core/blob/master/resources/pla_one_time.py
+    return CalculatedPriceResult{ 
+        amount: request.price.amount,
+        unit: request.price.unit 
+      }  
+    }
+
+  clause calculatePriceTimeOfUse(request : PricingLogicAlgorithmTimeOfUse) : CalculatedPriceResult {
+    // https://github.com/5GZORRO/elicensing-manager-core/blob/master/resources/pla_time_of_use.py
+    let price = request.price.amount / request.unitOfMeasure;
+    return CalculatedPriceResult{ 
+        amount: request.durationQuantity * price,
+        unit: request.price.unit 
+      }
+    }
 }
