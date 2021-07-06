@@ -1,0 +1,61 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace pop.zorro.templates.license_agreement
+
+// Pricing logics: https://github.com/5GZORRO/elicensing-manager-core/tree/master/resources
+
+contract LicenseLogic over LicenseTerms {
+  clause calculatePriceNInstances(request : PricingLogicAlgorithmNInstances) : CalculatedPriceResult {
+    // https://github.com/5GZORRO/elicensing-manager-core/blob/master/resources/pla_n_instances.py
+    let price = request.price.amount / request.unitOfMeasure;
+    let discount : Double =
+      if request.instancesQuantity < 10.0
+      then 20.0
+      else if request.instancesQuantity >= 10.0 or request.instancesQuantity < 20.0
+      then 10.0
+      else 0.0
+    ;
+    return CalculatedPriceResult{ 
+        amount: request.instancesQuantity * price * (1.0 - discount / 100.0),
+        unit: request.price.unit 
+      }
+  }
+
+  clause calculatePriceNUsers(request : PricingLogicAlgorithmNUsers) : CalculatedPriceResult {
+    // https://github.com/5GZORRO/elicensing-manager-core/blob/master/resources/pla_n_users.py
+    let price = request.price.amount / request.unitOfMeasure;
+    return CalculatedPriceResult{ 
+        amount: request.usersQuantity * price,
+        unit: request.price.unit 
+      }
+    }
+
+  clause calculatePriceOneTime(request : PricingLogicAlgorithmOneTime) : CalculatedPriceResult {
+    // https://github.com/5GZORRO/elicensing-manager-core/blob/master/resources/pla_one_time.py
+    return CalculatedPriceResult{ 
+        amount: request.price.amount,
+        unit: request.price.unit 
+      }  
+    }
+
+  clause calculatePriceTimeOfUse(request : PricingLogicAlgorithmTimeOfUse) : CalculatedPriceResult {
+    // https://github.com/5GZORRO/elicensing-manager-core/blob/master/resources/pla_time_of_use.py
+    let price = request.price.amount / request.unitOfMeasure;
+    return CalculatedPriceResult{ 
+        amount: request.durationQuantity * price,
+        unit: request.price.unit 
+      }
+    }
+}

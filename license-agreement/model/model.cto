@@ -1,38 +1,70 @@
-namespace pop.zorro.templates
+namespace pop.zorro.templates.license_agreement
 
+import org.accordproject.contract.Contract from https://models.accordproject.org/accordproject/contract.cto
 import org.accordproject.cicero.contract.* from https://models.accordproject.org/cicero/contract.cto
 import org.accordproject.cicero.runtime.* from https://models.accordproject.org/cicero/runtime.cto
-import org.accordproject.money.MonetaryAmount from https://models.accordproject.org/money@0.2.0.cto
 import org.accordproject.time.Duration from https://models.accordproject.org/time@0.2.0.cto
 
-transaction MyRequest extends Request {
-  o String input
+transaction PricingLogicAlgorithmNInstances extends Request {
+  o Double unitOfMeasure
+  o Double instancesQuantity
+  o Price price
 }
 
-transaction MyResponse extends Response {
-  o String output
+transaction PricingLogicAlgorithmNUsers extends Request {
+  o Double unitOfMeasure
+  o Double usersQuantity
+  o Price price
+}
+
+transaction PricingLogicAlgorithmOneTime extends Request {
+  o Double unitOfMeasure
+  o Price price
+}
+
+transaction PricingLogicAlgorithmTimeOfUse extends Request {
+  o Double unitOfMeasure
+  o Double durationQuantity
+  o Price price
+}
+
+transaction CalculatedPriceResult extends Response {
+  // o Price price
+  o Double amount
+  o String unit
+}
+
+concept Price {
+  o Double amount
+  o String unit
+}
+
+transaction CalculatePriceRequest extends Request {
+  o String data
 }
 
 /**
  * The model for the contract
  */
-asset ProductOfferingPrice extends AccordContract {
-  // o String @baseType
-  // o String @schemaLocation
-  // o String @type
-  o String id
-  o String href
+asset LicenseTerms extends Contract {
+  o String productName
+  o String providerCompanyName
+  o String providerCountry
+  o String providerAddress
+  o String consumerCompanyName
+  o String consumerCountry
+  o String consumerAddress
+  o DateTime commencementDate
+  o DateTime agreementSignatureDate
+
+  // POP props
   o String description
-  o Boolean isBundle
-  o DateTime lastUpdate 
-  o String lifeCycleStatus
-  o String name
-  o Double percentage 
-  o String priceType
-  o Integer recurringChargePeriodLength
-  o String recurringChargePeriodType
+  o Double percentage optional
+  o String priceType optional
+  o Integer recurringChargePeriodLength optional
+  o String recurringChargePeriodType optional
   o String version
-  o Money price // MONEY
+  o Money price optional
   o Quantity unitOfMeasure optional
   o TimePeriod validFor
   o ProductOfferingTerm[] productOfferingTerm optional
@@ -45,8 +77,8 @@ asset ProductOfferingPrice extends AccordContract {
 }
 
 concept TimePeriod {
-  o DateTime startDateTime
-  o DateTime endDateTime
+  o DateTime startDateTime optional
+  o DateTime endDateTime optional
 }
 
 concept Quantity { // Ex: 1 user
@@ -64,20 +96,12 @@ concept ConstraintRef {
   o String href
   o String name
   o String version optional
-  // o String @baseType
-  // o String @schemaLocation
-  // o String @type
-  // o String @referredType
 }
 
 concept PlaceRef {
   o String id
   o String href
   o String name
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
-  // o String @referredType
 }
 
 concept ProductOfferingPriceRelationship {
@@ -85,27 +109,18 @@ concept ProductOfferingPriceRelationship {
   o String href
   o String name
   o String relationshipType
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
 }
 
 concept BundledProductOfferingPriceRelationship {
   o String id
   o String href
   o String name
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
 }
 
 concept TaxItem {
   o String taxCategory
   o Double taxRate
-  o Money taxAmount // MONEY
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
+  o Money taxAmount 
 }
 
 concept PricingLogicAlgorithm {
@@ -115,9 +130,6 @@ concept PricingLogicAlgorithm {
   o String name
   o String plaSecId
   o TimePeriod validFor
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
 }
 
 concept ProductOfferingTerm {
@@ -125,9 +137,6 @@ concept ProductOfferingTerm {
   o String name
   o Quantity duration // QUANTITY
   o TimePeriod validFor
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
 }
 
 concept ProductSpecificationCharacteristicValueUse {
@@ -137,9 +146,6 @@ concept ProductSpecificationCharacteristicValueUse {
   o String name
   o String valueType
   o TimePeriod validFor
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
   o ProductSpecificationCharacteristicValue[] productSpecCharacteristicValue optional
   o ProductSpecificationRef productSpecification optional  
 }
@@ -154,9 +160,6 @@ concept ProductSpecificationCharacteristicValue {
   o String valueType
   o TimePeriod validFor
   o String value // ANY?
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
 }
 
 concept ProductSpecificationRef {
@@ -164,15 +167,5 @@ concept ProductSpecificationRef {
   o String href
   o String name
   o String version
-  // o String @baseType
-  // o String @schemaLocation // Uri
-  // o String @type
-  // o String @referredType
-  o TargetProductSchema targetProductSchema optional
 }
 
-concept TargetProductSchema {
-  // o String @baseType
-  // o String @schemaLocation // String | Uri ?
-  // o String @type
-}

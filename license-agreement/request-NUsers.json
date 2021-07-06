@@ -1,0 +1,10 @@
+{
+    "$class": "pop.zorro.templates.license_agreement.PricingLogicAlgorithmNUsers",
+    "unitOfMeasure": 50.0,
+    "usersQuantity": 10000.0,
+    "price": {
+        "$class": "pop.zorro.templates.license_agreement.Price",
+        "amount": 2.5,
+        "unit": "USD"
+    }
+}

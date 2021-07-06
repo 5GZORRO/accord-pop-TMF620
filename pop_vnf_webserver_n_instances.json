@@ -1,0 +1,96 @@
+{
+  "id": "pop_webserver_n_instances",
+  "href": "",
+  "name": "nginx VNF POP",
+  "description": "This Webserver is charged by the total number of instances created during a month",
+  "validFor": {
+    "startDateTime": "2021-02-03T00:00",
+    "endDateTime": "2022-02-02T00:00"
+  },
+  "recurringChargePeriodType": "month",
+  "recurringChargePeriodLength": 1,
+  "isBundle": false,
+  "bundledPopRelationship": "",
+  "popRelationship": [],
+  "lifecycleStatus": "Active",
+  "priceType": "recurring",
+  "unitOfMeasure": "1",
+  "price": {
+    "unit": "EUR",
+    "amount": 0.5
+  },
+    "pricingLogicAlgorithm": [
+    {
+      "id": "pla_n_instances",
+      "href": "",
+      "name": "Algorithm for a cost of instances",
+      "description": "calculates the total prize of the number of concurrent instances of the product. Price per instances is different depending the number of instances. Between 0 and 10 instances, the price is the base price. From 2 to 10, the price is 0.8 multiplied by the base price, and from 11 instances the price is 0.7 multiplied by the base price",
+      "validFor": {
+        "startDateTime": "2021-02-03T00:00",
+        "endDateTime": "2022-02-02T00:00"
+      },
+      "plaSpecId": "pla_n_instances",
+      "@type": "pricingLogicAlgorithm"
+    }
+  ],
+  "prodSpecCharValueUse": [
+    {
+      "name": "FunctionDescriptorName",
+      "description": "Descriptor name which links this specification to an actual Virtual Network Function",
+      "valueType": "string",
+      "configurable": true,
+      "isUnique": false,
+      "productSpecCharacteristicValue": [
+        {
+          "isDefault": true,
+          "valueType": "string",
+          "value": "webserver-vnf"
+        }
+      ]
+    },
+    {
+      "name": "FunctionDescriptorType",
+      "description": "Type of component that correspond to the FunctionDescriptorName values in a POP. This PSC affects to the entire POP, therefore each type of FunctionDescriptorName would require a new POP.",
+      "valueType": "string",
+      "configurable": true,
+      "isUnique": true,
+      "productSpecCharacteristicValue": [
+        {
+          "isDefault": true,
+          "valueType": "string",
+          "value": "VIRTUAL_NETWORK_FUNCTION"
+        }
+      ]
+    },
+    {
+      "name": "PriceLogic",
+      "description": "Charged by the number of instances deployed over a month",
+      "valueType": "string",
+      "productSpecCharacteristicValue": [
+        {
+          "isDefault": true,
+          "valueType": "string",
+          "value": "N_OF_INSTANCES"
+        }
+      ]
+    },
+    {
+      "name": "UnitOfMeasureAggregation",
+      "description": "Additional logic required to correctly measure the PriceType",
+      "valueType": "string",
+      "productSpecCharacteristicValue": [
+        {
+          "isDefault": false,
+          "valueType": "string",
+          "value": "MAX"
+        },
+        {
+          "isDefault": false,
+          "valueType": "string",
+          "value": "CONCURRENT"
+        }
+      ]
+    }
+  ],
+  "@type": "ProductOfferingPrice"
+}
